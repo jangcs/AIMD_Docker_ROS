@@ -128,6 +128,11 @@ colcon build
 source install/setup.bash
 ```
 
+## Run pub(talker)/sub(listener) 
+``` sh
+ros2 run py_pubsub talker
+ros2 run py_pubsub listener
+```
 
 # 참고
 ## colcon build 중 에러가 발생하는 경우
