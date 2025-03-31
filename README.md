@@ -84,11 +84,11 @@ docker compose up
 ## Create a ROS workspace
 ``` sh
 mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
 ```
 
 ## Create a package (py_pubsub sample)
 ``` sh
+cd ~/ros2_ws/src
 ros2 pkg create --build-type ament_python py_pubsub
 ```
 
