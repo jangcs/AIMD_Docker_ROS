@@ -6,7 +6,7 @@ RUN apt-get -y upgrade
 
 # -----------------------------------------------------------------------------
 # add locale package & set
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y install locales
 RUN locale-gen en_US en_US.UTF-8
 RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
@@ -43,13 +43,24 @@ RUN echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
 RUN apt-get install -y ros-foxy-rmw-cyclonedds-cpp
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
-ENV ROS_DOMAIN_ID 10
+ENV ROS_DOMAIN_ID=10
 
 # Install demo talker/listener packages (C++ and Python)
-RUN apt-get update && apt-get install -y \
-    ros-foxy-demo-nodes-cpp \
-    ros-foxy-demo-nodes-py \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y \
+#    ros-foxy-demo-nodes-cpp \
+#    ros-foxy-demo-nodes-py \
+#    && rm -rf /var/lib/apt/lists/*
+
+COPY ros2_ws/src /root/ros2_ws/src
+WORKDIR /root/ros2_ws
+RUN colcon build
+
+COPY ./ros2_entrypoint.sh /
+ENTRYPOINT ["/ros2_entrypoint.sh"]
+#RUN /bin/bash -c "source install/setup.bash"
 
 # Default to bash
-CMD ["/bin/bash"]
+#CMD ["/bin/bash"]
+
+# Run ros2 default program 
+CMD ["ros2", "run", "py_pubsub", "talker"]
