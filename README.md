@@ -90,17 +90,18 @@ cd ~/ros2_ws/src
 ## Create a package (py_pubsub sample)
 ``` sh
 ros2 pkg create --build-type ament_python py_pubsub
-cd ~/ros2_ws/src/py_pubsub/py_pubsub
 ```
 
 ## Download sample pub/sub codes & update setup.py
 
 ### Download publisher
 ``` sh
+cd ~/ros2_ws/src/py_pubsub/py_pubsub
 wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py
 ```
 ### Download subscriber
 ``` sh
+cd ~/ros2_ws/src/py_pubsub/py_pubsub
 wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py
 ```
 
