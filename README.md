@@ -19,6 +19,29 @@ $ sudo groupadd -f docker
 $ sudo usermod -aG docker <UserName>
 ```
 
+## Nvidia Container Toolkit 설정
+### Stable repository 및 GPG key 설정
+```sh
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+```
+### install nvidia-docker
+```sh
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+```
+
+### restart docker daemon
+```sh
+sudo systemctl restart docker
+```
+
+### base CUDA container 테스트
+```sh
+sudo nvidia-docker run --rm --gpus all nvidia/cuda:12.2.2-base-ubuntu20.04 nvidia-smi
+```
+
 # Docker Image Build
 ## Publisher build
 ```sh
