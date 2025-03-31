@@ -100,3 +100,46 @@ services:
 ``` sh
 $ docker compose up
 ```
+
+
+
+pip uninstall empy
+pip install empy==3.3.4
+
+pip install catkin_pkg
+pip install numpy
+pip install lark
+
+# ROS Setup
+## Create a ROS workspace
+mkdir -p ros2_ws/src
+cd ros2_ws/src
+
+## Create a package
+ros2 pkg create --build-type ament_python py_pubsub
+
+### Download sample codes
+cd ros2_ws/src/py_pubsub/py_pubsub
+### Download publisher
+wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py
+### Download subscriber
+wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py
+
+### Modify setup.py to add talker & listener to console_scripts
+    entry_points={
+        'console_scripts': [
+                'talker = py_pubsub.publisher_member_function:main',
+                'listener = py_pubsub.subscriber_member_function:main',
+        ],
+    },
+
+
+
+## Build and run
+cd ros2_ws
+rosdep install -i --from-path src --rosdistro foxy -y
+colcon build --packages-select py_pubsub
+
+source install/setup.bash
+
+
