@@ -81,7 +81,7 @@ docker compose up
 
 
 # ROS Setup 과정 정리 (py_pubsub sample 생성 과정) 
-ros2_ws/src/py_pubsub에 이미 만들어 놨으므로 아래 내용을 추가로 실행할 필요없음.\n
+ros2_ws/src/py_pubsub에 이미 만들어 놨으므로 아래 내용을 추가로 실행할 필요없음.<br>
 local에 ros2를 설치할 때 만 참고하면 됨.
 ## Create a ROS workspace
 ``` sh
