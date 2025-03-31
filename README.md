@@ -42,13 +42,13 @@ sudo systemctl restart docker
 sudo nvidia-docker run --rm --gpus all nvidia/cuda:12.2.2-base-ubuntu20.04 nvidia-smi
 ```
 
-# Docker Image Build
-## Publisher build
+# Build Docker Images
+## Build publisher 
 ```sh
 docker build --tag pub:aimd -f ./Dockerfile_pub .
 ```
 
-### Subscriber build
+## Build subscriber
 ```sh
 docker build --tag sub:aimd -f ./Dockerfile_sub .
 ```
@@ -92,7 +92,7 @@ cd ros2_ws/src
 ros2 pkg create --build-type ament_python py_pubsub
 ```
 
-## Download sample codes & update setup.py
+## Download sample pub/sub codes & update setup.py
 
 ### Download publisher
 ``` sh
@@ -112,14 +112,14 @@ wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_s
     },
 
 
-## Build and run
+## Build package
 ``` sh
 cd ros2_ws
 rosdep install -i --from-path src --rosdistro foxy -y
 colcon build 
 ```
 
-## source setup.bash (local)
+## Source setup.bash (local)
 ``` sh
 source install/setup.bash
 ```
