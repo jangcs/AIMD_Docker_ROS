@@ -93,7 +93,7 @@ wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_s
 ``` sh
 cd ros2_ws
 rosdep install -i --from-path src --rosdistro foxy -y
-colcon build --packages-select py_pubsub
+colcon build 
 ```
 
 ## source setup.bash (local)
