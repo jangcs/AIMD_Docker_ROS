@@ -109,7 +109,7 @@ wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_s
 
 ### Modify setup.py to add talker & listener to console_scripts
 ``` sh
-vi cd ~/ros2_ws/src/py_pubsub/setup.py
+vi ~/ros2_ws/src/py_pubsub/setup.py
 ```
     entry_points={
         'console_scripts': [
@@ -128,6 +128,7 @@ colcon build
 
 ## Source setup.bash (local)
 ``` sh
+cd ~/ros2_ws
 source install/setup.bash
 ```
 
