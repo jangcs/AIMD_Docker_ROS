@@ -105,10 +105,11 @@ source install/setup.bash
 
 # 참고
 ## colcon build 중 에러가 발생하는 경우
-
+``` sh
 pip uninstall empy
 pip install empy==3.3.4
 
 pip install catkin_pkg
 pip install numpy
 pip install lark
+```
