@@ -22,60 +22,15 @@ $ sudo usermod -aG docker <UserName>
 # Docker Image Build
 ## Publisher build
 ```sh
-$ cd Publisher
-```
-
-```sh
-$ cat Dockerfile
-```
-```
-FROM python:3.8
-
-RUN pip3 install paho-mqtt
-COPY publish.py publish.py
-
-CMD python3 publish.py
-```
-
-```sh
-$ docker build -t mqtt-publish:v1 .
-```
-
-```sh
-$ docker images
+docker build --tag pub:aimd -f ./Dockerfile_pub .
 ```
 
 ### Subscriber build
 ```sh
-$ cd Subscriber
-```
-
-```sh
-$ cat Dockerfile_pub
-```
-
-```
-FROM nvidia/cuda:12.2.2-base-ubuntu20.04
-
-...
-RUN apt-get install -y ros-foxy-desktop
-...
-
-
-```
-```sh
-$ docker build -t mqtt-subscribe:v1 .
-```
-
-```sh
-$ docker images
+docker build --tag sub:aimd -f ./Dockerfile_sub .
 ```
 
 # Run with docker compose
-
-```sh
-$ cd PubSub
-```
 
 ```sh
 $ cat docker-compose.yml
@@ -83,16 +38,16 @@ $ cat docker-compose.yml
 ```
 version: '3.8'
 services:
-  mqtt-subscribe:
-    image: "mqtt-subscribe:v1"
-    container_name: mqtt-sub
+  ros-listener:
+    image: "sub:aimd"
+    container_name: ros-listener
     network_mode: "host"
     tty: true
 #    volumes: 
 #       - ./data:/data
-  mqtt-publish:
-    image: "mqtt-publish:v1"
-    container_name: mqtt-pub
+  ros-talker:
+    image: "pub:aimd"
+    container_name: ros-talker
     network_mode: "host"
     tty: true
 ```
@@ -102,28 +57,29 @@ $ docker compose up
 ```
 
 
-
-pip uninstall empy
-pip install empy==3.3.4
-
-pip install catkin_pkg
-pip install numpy
-pip install lark
-
-# ROS Setup
+# ROS Setup 과정 정리 (py_pubsub sample 생성 과정) 
 ## Create a ROS workspace
+``` sh
 mkdir -p ros2_ws/src
 cd ros2_ws/src
+```
 
 ## Create a package
+``` sh
 ros2 pkg create --build-type ament_python py_pubsub
+```
 
 ### Download sample codes
+``` sh
 cd ros2_ws/src/py_pubsub/py_pubsub
+```
+
 ### Download publisher
+``` sh
 wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py
 ### Download subscriber
 wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py
+```
 
 ### Modify setup.py to add talker & listener to console_scripts
     entry_points={
@@ -134,12 +90,25 @@ wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_s
     },
 
 
-
 ## Build and run
+``` sh
 cd ros2_ws
 rosdep install -i --from-path src --rosdistro foxy -y
 colcon build --packages-select py_pubsub
+```
 
+## source setup.bash (local)
+``` sh
 source install/setup.bash
+```
 
 
+# 참고
+## colcon build 중 에러가 발생하는 경우
+
+pip uninstall empy
+pip install empy==3.3.4
+
+pip install catkin_pkg
+pip install numpy
+pip install lark
