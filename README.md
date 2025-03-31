@@ -56,7 +56,7 @@ docker build --tag sub:aimd -f ./Dockerfile_sub .
 # Run with docker compose
 
 ```sh
-$ cat docker-compose.yml
+cat docker-compose.yml
 ```
 ```
 version: '3.8'
@@ -76,20 +76,21 @@ services:
 ```
 
 ``` sh
-$ docker compose up
+docker compose up
 ```
 
 
 # ROS Setup 과정 정리 (py_pubsub sample 생성 과정) 
 ## Create a ROS workspace
 ``` sh
-mkdir -p ros2_ws/src
-cd ros2_ws/src
+mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws/src
 ```
 
-## Create a package
+## Create a package (py_pubsub sample)
 ``` sh
 ros2 pkg create --build-type ament_python py_pubsub
+cd ~/ros2_ws/src/py_pubsub
 ```
 
 ## Download sample pub/sub codes & update setup.py
@@ -114,7 +115,7 @@ wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_s
 
 ## Build package
 ``` sh
-cd ros2_ws
+cd ~/ros2_ws
 rosdep install -i --from-path src --rosdistro foxy -y
 colcon build 
 ```
