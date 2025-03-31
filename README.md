@@ -126,7 +126,7 @@ rosdep install -i --from-path src --rosdistro foxy -y
 colcon build 
 ```
 
-## Source setup.bash (local)
+## Source setup.bash (local overlay setup)
 ``` sh
 cd ~/ros2_ws
 source install/setup.bash
