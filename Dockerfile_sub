@@ -51,16 +51,16 @@ ENV ROS_DOMAIN_ID=10
 #    ros-foxy-demo-nodes-py \
 #    && rm -rf /var/lib/apt/lists/*
 
+# Copy sample pubsub demo
 COPY ros2_ws/src /root/ros2_ws/src
+
+# Build pubsub demo on this container
 WORKDIR /root/ros2_ws
 RUN colcon build
 
+# Setup entrypoint for ROS2 environment
 COPY ./ros2_entrypoint.sh /
 ENTRYPOINT ["/ros2_entrypoint.sh"]
-#RUN /bin/bash -c "source install/setup.bash"
-
-# Default to bash
-#CMD ["/bin/bash"]
 
 # Run ros2 default program 
 CMD ["ros2", "run", "py_pubsub", "listener"]
