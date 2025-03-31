@@ -90,7 +90,7 @@ cd ~/ros2_ws/src
 ## Create a package (py_pubsub sample)
 ``` sh
 ros2 pkg create --build-type ament_python py_pubsub
-cd ~/ros2_ws/src/py_pubsub
+cd ~/ros2_ws/src/py_pubsub/py_pubsub
 ```
 
 ## Download sample pub/sub codes & update setup.py
