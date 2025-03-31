@@ -43,12 +43,12 @@ sudo nvidia-docker run --rm --gpus all nvidia/cuda:12.2.2-base-ubuntu20.04 nvidi
 ```
 
 # Build Docker Images
-## Build publisher 
+## Build a publisher 
 ```sh
 docker build --tag pub:aimd -f ./Dockerfile_pub .
 ```
 
-## Build subscriber
+## Build a subscriber
 ```sh
 docker build --tag sub:aimd -f ./Dockerfile_sub .
 ```
@@ -96,18 +96,18 @@ ros2 pkg create --build-type ament_python py_pubsub
 
 ## Download sample pub/sub codes & update setup.py
 
-### Download publisher
+### Download publisher code
 ``` sh
 cd ~/ros2_ws/src/py_pubsub/py_pubsub
 wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py
 ```
-### Download subscriber
+### Download subscriber code
 ``` sh
 cd ~/ros2_ws/src/py_pubsub/py_pubsub
 wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py
 ```
 
-### Modify setup.py to add talker & listener to console_scripts
+### Modify setup.py (add talker & listener to console_scripts)
 ``` sh
 vi ~/ros2_ws/src/py_pubsub/setup.py
 ```
@@ -119,7 +119,7 @@ vi ~/ros2_ws/src/py_pubsub/setup.py
     },
 
 
-## Build package
+## Build the package
 ``` sh
 cd ~/ros2_ws
 rosdep install -i --from-path src --rosdistro foxy -y
