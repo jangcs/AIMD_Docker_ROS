@@ -56,12 +56,12 @@ docker build --tag sub:aimd -f ./Dockerfile_sub .
 ## Run a publisher 
 docker run -it --rm --name publisher --network="host" pub:aimd
 ## or run a publisher with GPU
-nvidia-docker run -it --rm ---gpus all -name publisher --network="host" pub:aimd
+nvidia-docker run -it --rm --gpus all --name publisher --network="host" pub:aimd
 
 ## Run a subscriber
 docker run -it --rm --name subscriber --network="host" sub:aimd
 ## or run a subscriber with GPU
-nvidia-docker run -it --rm ---gpus all -name subscriber --network="host" sub:aimd
+nvidia-docker run -it --rm --gpus all --name subscriber --network="host" sub:aimd
 
 # Run with docker compose
 
