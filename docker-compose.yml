@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  ros-listener:
+    image: "sub:aimd"
+    container_name: ros-listener
+    network_mode: "host"
+    tty: true
+#    volumes: 
+#       - ./data:/data
+  ros-talker:
+    image: "pub:aimd"
+    container_name: ros-talker
+    network_mode: "host"
+    tty: true
+
