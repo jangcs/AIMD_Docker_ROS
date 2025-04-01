@@ -1,6 +1,6 @@
 ## Build img-path-sub
 ```sh
-docker build -t img_path_sub -f Dockerfile_path_sub .
+docker build -t img_path_sub -f Dockerfile_img_path_sub .
 ```
 
 ## Run img-path-sub

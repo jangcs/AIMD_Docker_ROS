@@ -24,5 +24,5 @@ ENTRYPOINT ["/ros2_entrypoint_underlay.sh"]
 
 
 # img_path_pub을 실행
-CMD ["python3", "img_path_pub.py"]
+CMD ["python3", "img_path_sub.py"]
 

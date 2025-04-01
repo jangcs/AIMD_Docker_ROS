@@ -5,8 +5,6 @@ services:
     container_name: ros-listener
     network_mode: "host"
     tty: true
-#    volumes: 
-#       - ./data:/data
   ros-talker:
     image: "pub:aimd"
     container_name: ros-talker
@@ -35,7 +33,7 @@ services:
   img-path-sub:
     image: "img_path_sub"
     container_name: img-path-sub
-    privileged: true 
+#    privileged: true 
     environment:
       - ROS_DOMAIN_ID=10
       - DISPLAY=unix$DISPLAY
