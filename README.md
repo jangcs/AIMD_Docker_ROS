@@ -52,6 +52,11 @@ docker build --tag pub:aimd -f ./Dockerfile_pub .
 ```sh
 docker build --tag sub:aimd -f ./Dockerfile_sub .
 ```
+# RUN 
+## Run a publisher
+docker run -it --rm --name publisher --network="host" pub:aimd
+## Run a subscriber
+docker run -it --rm --name subscriber --network="host" sub:aimd
 
 # Run with docker compose
 
