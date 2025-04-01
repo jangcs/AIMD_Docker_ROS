@@ -28,13 +28,16 @@ class ImageSubscriber(Node) :
 
 
    def image_callback(self, data) :
+     # receive image data
      self.image = bridge.imgmsg_to_cv2(data, 'bgr8')
+ 
+     # save to a file (name = timestame)
      t = time.time_ns()
      filename = f"{t//1_000_000_000}.{t%1_000_000_000:09d}" + ".jpg"
      file_path = os.path.join(directory, filename)
      cv2.imwrite(file_path, self.image)
-#     cv2.imshow('img', self.image)
-#     cv2.waitKey(33)
+
+     # publish the saved file_path
      msg = String()
      dict = {'file_path':file_path}
      msg.data = json.dumps(dict)
