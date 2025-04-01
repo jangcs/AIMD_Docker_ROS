@@ -29,7 +29,6 @@ class ImageSubscriber(Node) :
 
    def image_callback(self, data) :
      self.image = bridge.imgmsg_to_cv2(data, 'bgr8')
-     directory = '/data/'
      t = time.time_ns()
      filename = f"{t//1_000_000_000}.{t%1_000_000_000:09d}" + ".jpg"
      file_path = os.path.join(directory, filename)
