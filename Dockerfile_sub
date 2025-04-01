@@ -36,9 +36,6 @@ RUN apt-get install -y ros-dev-tools
 RUN apt-get install -y python3-colcon-common-extensions 
 RUN apt-get install -y python3-vcstool
 
-# Source ROS 2 on every shell start
-RUN echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
-
 ##### INSTALL CycloneDDS to communicate between docker container in same host
 RUN apt-get install -y ros-foxy-rmw-cyclonedds-cpp
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
@@ -50,6 +47,11 @@ ENV ROS_DOMAIN_ID=10
 #    ros-foxy-demo-nodes-cpp \
 #    ros-foxy-demo-nodes-py \
 #    && rm -rf /var/lib/apt/lists/*
+
+# Source ROS 2 on every shell start
+RUN echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
+# Source ROS 2 on current shell in order to colcon build
+RUN bash -c "source /opt/ros/foxy/setup.bash" 
 
 # Copy sample pubsub demo
 COPY ros2_ws/src /root/ros2_ws/src
