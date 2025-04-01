@@ -40,7 +40,6 @@ class ImageSubscriber(Node) :
      dict = {'file_path':file_path}
      msg.data = json.dumps(dict)
      self.publisher_.publish(msg)
-     cv2.waitKey(33)
      
 def main(args=None) :
   rclpy.init(args=args)
