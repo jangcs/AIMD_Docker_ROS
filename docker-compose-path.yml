@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  ros-listener:
+    image: "sub:aimd"
+    container_name: ros-listener
+    network_mode: "host"
+    tty: true
+#    volumes: 
+#       - ./data:/data
+  ros-talker:
+    image: "pub:aimd"
+    container_name: ros-talker
+    network_mode: "host"
+    tty: true
+  ros-cam:
+    image: "usb-cam-foxy"
+    container_name: usb-cam-foxy
+    environment:
+      - ROS_DOMAIN_ID=10
+    devices:
+      - /dev/video0:/dev/video0
+    group_add:
+      - video
+    network_mode: "host"
+    tty: true
+  img-path-pub:
+    image: "img_path_pub"
+    container_name: img-path-pub
+    environment:
+      - ROS_DOMAIN_ID=10
+    volumes:
+      - ./data:/data
+    network_mode: "host"
+    tty: true
+  img-path-sub:
+    image: "img_path_sub"
+    container_name: img-path-sub
+    privileged: true 
+    environment:
+      - ROS_DOMAIN_ID=10
+      - DISPLAY=unix$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - ./data:/data
+    network_mode: "host"
+    tty: true
