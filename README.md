@@ -16,7 +16,7 @@ $ sudo apt-get install docker-compose-plugin
 ## Add user to docker group
 ```sh
 $ sudo groupadd -f docker
-$ sudo usermod -aG docker <UserName>
+$ sudo usermod -aG docker $USER
 ```
 
 ## Nvidia Container Toolkit 설정
