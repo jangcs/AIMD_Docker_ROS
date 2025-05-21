@@ -36,6 +36,8 @@ RUN apt-get install -y ros-dev-tools
 RUN apt-get install -y python3-colcon-common-extensions 
 RUN apt-get install -y python3-vcstool
 
+RUN apt-get install -y iproute2
+
 ##### INSTALL CycloneDDS to communicate between docker container in same host
 RUN apt-get install -y ros-foxy-rmw-cyclonedds-cpp
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp

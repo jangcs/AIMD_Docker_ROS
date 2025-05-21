@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ros-pubsub 
+  name: ros-pubsub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ros-pubsub
+  template:
+    metadata:
+      labels:
+        app: ros-pubsub
+    spec:
+      hostNetwork: true
+      containers:
+      - image: pub:aimd
+        imagePullPolicy: Never 
+        name: ros-pub
+      - image: sub:aimd
+        imagePullPolicy: Never 
+        name: ros-sub
