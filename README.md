@@ -89,6 +89,24 @@ services:
 docker compose up
 ```
 
+# Run with k8s
+
+## Upload container images to minikube
+```sh
+$ minikube image load pub:aimd
+$ minikube image load sub:aimd
+```
+## Deploy a Pod and log
+```sh
+source k8s_ros.sh
+```
+or
+```sh
+$ export CYCLONEDDS_URI=`pwd`/cyclonedds.xml
+$ kubectl apply -f k8s_pubsub.yaml
+$ kubectl logs --follow `kubectl get pods | grep ros-pubsub | head -n 1 | awk '{print $1}'` -c ros-sub
+```
+
 
 # Local Host에 ROS Setup 과정 정리 (py_pubsub sample 생성 과정) 
 local에 ros2를 설치할 때 만 참고하면 됨. <br>
