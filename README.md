@@ -96,17 +96,20 @@ docker compose up
 $ minikube image load pub:aimd
 $ minikube image load sub:aimd
 ```
-## Deploy a Pod and log
+## Deploy a pod and log it 
 ```sh
 source k8s_ros.sh
 ```
 or
 ```sh
-$ export CYCLONEDDS_URI=`pwd`/cyclonedds.xml
 $ kubectl apply -f k8s_pubsub.yaml
 $ kubectl logs --follow `kubectl get pods | grep ros-pubsub | head -n 1 | awk '{print $1}'` -c ros-sub
 ```
-
+## Local에서 ROS2로 Pod 내부의 Container와 통신
+ROS2 Node를 실행하기 위해서 아래 환경 설정이 필요함 
+```sh
+$ export CYCLONEDDS_URI=`pwd`/cyclonedds.xml
+```
 
 # Local Host에 ROS Setup 과정 정리 (py_pubsub sample 생성 과정) 
 local에 ros2를 설치할 때 만 참고하면 됨. <br>
