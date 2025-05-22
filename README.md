@@ -89,6 +89,11 @@ services:
 docker compose up
 ```
 
+다른 docker compose 파일을 이용하기 위해서는
+``` sh
+docker compose -f <docker-compose-file.yml> up
+```
+
 # Run with K8s
 
 ## Upload container images to minikube
