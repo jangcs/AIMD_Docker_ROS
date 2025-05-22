@@ -89,14 +89,14 @@ services:
 docker compose up
 ```
 
-# Run with k8s
+# Run with K8s
 
 ## Upload container images to minikube
 ```sh
 $ minikube image load pub:aimd
 $ minikube image load sub:aimd
 ```
-## Deploy a pod and log it 
+## Deploy a pod sample(talker/listener) and log it(listener) 
 ```sh
 source k8s_ros.sh
 ```
@@ -110,6 +110,7 @@ ROS2 Node를 실행하기 위해서 아래 환경 설정이 필요함
 ```sh
 $ export CYCLONEDDS_URI=`pwd`/cyclonedds.xml
 ```
+설정을 완료한 후, Local host에서 ROS2 Node를 실행하여 통신을 진행
 
 # Local Host에 ROS Setup 과정 정리 (py_pubsub sample 생성 과정) 
 local에 ros2를 설치할 때 만 참고하면 됨. <br>
