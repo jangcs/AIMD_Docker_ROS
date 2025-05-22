@@ -42,3 +42,4 @@ services:
       - ./data:/data
     network_mode: "host"
     tty: true
+
