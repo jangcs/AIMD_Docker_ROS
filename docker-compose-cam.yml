@@ -21,4 +21,3 @@ services:
       - video
     network_mode: "host"
     tty: true
-
