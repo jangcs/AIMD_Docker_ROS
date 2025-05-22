@@ -22,3 +22,4 @@ spec:
       - image: sub:aimd
         imagePullPolicy: Never 
         name: ros-sub
+
