@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
 SHELL ["/bin/bash", "-c"]
 RUN echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
 
-#ENV ROS_DOMAIN_ID=10
+#ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+ENV ROS_DOMAIN_ID=10
 
 # Setup entrypoint for ROS2 environment
 COPY ./ros2_entrypoint_underlay.sh /
@@ -18,4 +19,3 @@ ENTRYPOINT ["/ros2_entrypoint_underlay.sh"]
 
 # 기본 shell로 bash 제공
 CMD ["ros2", "run",  "usb_cam", "usb_cam_node_exe"]
-
