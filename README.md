@@ -95,7 +95,7 @@ docker compose -f <docker-compose-file.yml> up
 ```
 
 # Run with K8s
-
+minikube를 사용한다고 가정하고 진행함.
 ## Upload container images to minikube
 ```sh
 $ minikube image load pub:aimd
