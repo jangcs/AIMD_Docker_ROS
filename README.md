@@ -1,22 +1,22 @@
 # Docker 설치
 ## Docker CE(Community Edition) 설치를 추천
 ```sh
-$ apt-get update
-$ sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-$ sudo apt-get update
-$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+apt-get update
+sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 ## Docker compose plugin 설치
 ```sh
-$ sudo apt-get install docker-compose-plugin
+sudo apt-get install docker-compose-plugin
 ```
 
 ## Add user to docker group
 ```sh
-$ sudo groupadd -f docker
-$ sudo usermod -aG docker $USER
+sudo groupadd -f docker
+sudo usermod -aG docker $USER
 ```
 
 ## Nvidia Container Toolkit 설정
@@ -106,8 +106,8 @@ docker compose -f <docker-compose-file.yml> up
 minikube를 사용한다고 가정하고 진행함.
 ## Upload container images to minikube
 ```sh
-$ minikube image load pub:aimd
-$ minikube image load sub:aimd
+minikube image load pub:aimd
+minikube image load sub:aimd
 ```
 ## Deploy a pod sample(talker/listener) and log it(listener) 
 ```sh
@@ -115,13 +115,13 @@ source k8s_ros.sh
 ```
 or
 ```sh
-$ kubectl apply -f k8s_pubsub.yaml
-$ kubectl logs --follow `kubectl get pods | grep ros-pubsub | head -n 1 | awk '{print $1}'` -c ros-sub
+kubectl apply -f k8s_pubsub.yaml
+kubectl logs --follow `kubectl get pods | grep ros-pubsub | head -n 1 | awk '{print $1}'` -c ros-sub
 ```
 ## Local에서 ROS2로 Pod 내부의 Container와 통신
 ROS2 Node를 실행하기 위해서 아래 환경 설정이 필요함 
 ```sh
-$ export CYCLONEDDS_URI=`pwd`/cyclonedds.xml
+export CYCLONEDDS_URI=`pwd`/cyclonedds.xml
 ```
 설정을 완료한 후, Local host에서 ROS2 Node를 실행하여 통신을 진행
 
