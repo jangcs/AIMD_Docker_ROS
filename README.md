@@ -1,6 +1,6 @@
 # Docker 설치
 ## Docker CE(Community Edition) 설치를 추천
-```sh
+```console
 $ apt-get update
 $ sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -9,7 +9,7 @@ $ sudo apt-get update
 $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 ## Docker compose plugin 설치
-```sh
+```console
 $ sudo apt-get install docker-compose-plugin
 ```
 
